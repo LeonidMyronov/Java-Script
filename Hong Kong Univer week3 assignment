@@ -1,0 +1,52 @@
+<html>
+<head>
+</head>
+<body id="myBody" onload=f()>
+<style>
+img{
+	width: 100px;
+}
+
+div
+{
+	position:absolute;
+	<!--background:blue; -->
+	border-bottom: 1px solid black;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+}
+</style>
+
+<script>
+	var box1_left = 100;
+	var box2_left = box1_left + box_width;
+	var box_left = 100;
+	var box_top = 150;
+	var box_width = 500;
+	var box_height = 500;
+	var nodeBody = document.getElementById("myBody");
+	
+	function f()
+	{
+		for	(i=0; i<2; i++)
+		{
+			nodeDiv = document.createElement("div");
+			
+			
+			nodeDiv.style.left = box_left+"px";
+			nodeDiv.style.top = box_top+"px";
+			nodeDiv.style.width = box_width+"px";
+			nodeDiv.style.height = box_height+"px";
+			nodeDiv.style.id = "container";
+			box_left += box_width;
+			nodeBody.appendChild(nodeDiv);
+		}
+	}
+</script>
+<!--<div class = "container"></div> -->
+<img src = "blackjack-logo.png">
+
+</body>
+
+</html>
