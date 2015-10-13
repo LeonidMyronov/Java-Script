@@ -4,10 +4,11 @@
 <body id="myBody" onload=f()>
 <style>
 img{
-	width: 100px;
+	width: 60px;
+	position:absolute;
 }
 
-div
+#div
 {
 	position:absolute;
 	<!--background:blue; -->
@@ -25,8 +26,10 @@ div
 	var box_top = 150;
 	var box_width = 500;
 	var box_height = 500;
+	
 	var nodeBody = document.getElementById("myBody");
 	
+	var imageCount = 5;
 	function f()
 	{
 		for	(i=0; i<2; i++)
@@ -34,18 +37,39 @@ div
 			nodeDiv = document.createElement("div");
 			
 			
-			nodeDiv.style.left = box_left+"px";
+			nodeDiv.style.left = box_left+(box_width+10)*i+"px";
 			nodeDiv.style.top = box_top+"px";
 			nodeDiv.style.width = box_width+"px";
 			nodeDiv.style.height = box_height+"px";
-			nodeDiv.style.id = "container";
-			box_left += box_width;
+			nodeDiv.setAttribute("id","div");
+		
+			<!--box_left = box1_left+box_width+10; -->
 			nodeBody.appendChild(nodeDiv);
 		}
+		
+		<!--alert("box_left="+box1_left+ 
+		<!--	"; box_width="+box_width+
+		<!--	"; box_top="+box_top+
+		<!--	"; box_height="+box_height
+		<!--	);
+		{
+		<!--	do {
+			var x = Math.floor(Math.random()*420)+110;
+			var y = Math.floor(Math.random()*420)+160;
+		<!--	alert("x="+x+ "; y="+y);
+		<!--	}while( x > box_left+10 && x < box_width+box_left-70 &&
+		<!--			y > box_top+10 && y < box_height + box_top - 70);
+		}
+		
+		<!--alert("after While: x="+x+ "; y="+y);
+		var imgNode = document.getElementById("myImg");
+		<!--alert(imgNode.getAttribute(left));-->
+		imgNode.style.left = x+"px";
+		imgNode.style.top = y+"px";
 	}
 </script>
 <!--<div class = "container"></div> -->
-<img src = "blackjack-logo.png">
+<img id = "myImg" src = "blackjack-logo.png">
 
 </body>
 
