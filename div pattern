@@ -1,0 +1,48 @@
+<html>
+<head>
+<!--<meta http-equiv="refresh" content="0.5"> -->
+</head>
+<body id = "theBody" onload="f()">
+    <h1>Work Title: Creating an Image Pattern
+    </h1>
+    <style>
+        div
+        {
+            position:absolute;
+            background:blue;
+        }
+    </style>
+    <script>
+    //var the_timer, img_width=250, the_img, delta = 3;
+    the_timer = setInterval(f, 500);
+      function f()
+      {
+        var the_body = document.getElementById("theBody");
+        var left = 100;
+        var top = 50;
+        var width = 300;
+        var height = 300;
+        var position_delta = 10;
+        var color_list = ["red", "black", "white", "yellow", "blue", "green", "gold", "lightblue", "lightgreen", "lightred", "darkblue"];
+        //alert(the_body);
+        
+        
+        
+        while(width > 10)
+        {
+            var the_div = document.createElement("div");
+            the_div.style.background = color_list[(Math.floor(Math.random()*color_list.length))];
+            the_div.style.left = left+"px";
+            the_div.style.top = top+"px";
+            the_div.style.width = width+"px";
+            the_div.style.height = width+"px";
+            width -= position_delta*2;
+            top += position_delta;
+            left += position_delta;
+            
+            the_body.appendChild(the_div);
+        }
+      }
+    </script>
+</body>
+</html>
