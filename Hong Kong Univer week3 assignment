@@ -3,12 +3,12 @@
 </head>
 <body id="myBody" onload=f()>
 <style>
-img{
-	width: 60px;
+.myImg{
+<!--	width: 60px; -->
 	position:absolute;
 }
 
-#div
+#div0, #div1
 {
 	position:absolute;
 	<!--background:blue; -->
@@ -20,56 +20,157 @@ img{
 </style>
 
 <script>
-	var box1_left = 100;
 	var box2_left = box1_left + box_width;
 	var box_left = 100;
-	var box_top = 150;
+	var box1_left = 100;
+	var box_top = 100;
 	var box_width = 500;
 	var box_height = 500;
+    var box_pad = 10;
+    var image_size = 70;
 	
 	var nodeBody = document.getElementById("myBody");
+    var node0Div;
+    var node1Div;
+    //var nodeImgId;
 	
 	var imageCount = 5;
+    function generateFaces()
+    {
+        for(i=0; i < imageCount; i++)
+            {
+                var x = Math.floor(Math.random()*(box_width-image_size-2*box_pad));<!--+box_left+box_pad;
+                var y = Math.floor(Math.random()*(box_height-image_size-2*box_pad));<!--+box_top+box_pad;
+            <!--	alert("x="+x+ "; y="+y);
+            <!--	}while( x > box_left+10 && x < box_width+box_left-70 &&
+            <!--			y > box_top+10 && y < box_height + box_top - 70);
+            
+            
+            <!--alert("after While: x="+x+ "; y="+y);
+            
+                var nodeImg = document.createElement("img");
+                nodeImg.style.width = image_size+"px";
+                nodeImg.style.position = "absolute";
+                <!--alert(imgNode.getAttribute(left));-->
+                nodeImg.style.left = x+"px";
+                nodeImg.style.top = y+"px";
+                var nodeImgId = "myImg"+i;
+                nodeImg.setAttribute("id", nodeImgId);
+                nodeImg.setAttribute("class", "myImg"); 
+                //nodeImg.setAttribute("onmouseover", "mouseOver(this)");
+                //nodeImg.setAttribute("onmouseout", "mouseOut(this)");
+            <!--   nodeImg.style.class = "myImg"; -->
+                nodeImg.setAttribute("src","https://www.dropbox.com/s/wgv3507e1hvityl/blackjack-logo.png?dl=1");
+                node0Div.appendChild(nodeImg);
+            
+             
+            <!--var node2Img = nodeImg.cloneNode(true);
+            <!--node2Img.style.left = x + box_width + box_pad;
+            <!--nodeBody.appendChild(node2Img); 
+            
+            }
+        node0Div.lastChild.addEventListener("click", win_game);
+    }
+    
+    function cloneNode()
+    {
+        var node1DivClone = document.getElementById("div0");
+        node1Div = node1DivClone.cloneNode(true);
+        node1Div.removeChild(node1Div.lastChild);
+        node1Div.style.left = box_left + box_width + box_pad;
+        //node1Div.removeAttribute("id");
+        node1Div.setAttribute("id","div1");
+        
+        nodeBody.appendChild(node1Div); 
+    }
+    function mouseOver(x)
+    {
+        x.style.width = image_size*2;
+    }
+    
+    function mouseOut(x)
+    {
+        x.style.width = image_size;
+    }
+    
+    function win_game()
+    {
+        alert("       You win!\n \nClick OK to the next round.");
+        event.stopPropagation();
+        imageCount += 5;
+        deleteImages(node0Div);
+        deleteNode(node1Div);
+        generateFaces();
+        cloneNode(); 
+    }
+    function deleteImages(node)
+    {
+        while(node.firstChild)
+        {
+            node.removeChild(node.firstChild);
+        }
+    }
+    
+    function deleteNode(node)
+    {
+        node.parentNode.removeChild(node);
+    }
+    
+    function lose_game()
+    {
+        alert("You lose!");
+        nodeBody.removeEventListener("click", lose_game);
+        node0Div.lastChild.removeEventListener("click", win_game);
+        //nodeBody.onclick = null;
+        //node0Div.lastChild.onclick = null;
+        
+    }
+    
 	function f()
 	{
-		for	(i=0; i<2; i++)
-		{
-			nodeDiv = document.createElement("div");
+		<!--for	(i=0; i<2; i++)
+		<!--{
+			var nodeDiv = document.createElement("div");
+            
 			
 			
-			nodeDiv.style.left = box_left+(box_width+10)*i+"px";
+			<!--nodeDiv.style.left = box_left+(box_width+box_pad)*i+"px";
+            nodeDiv.style.left = box_left+"px";
+            
 			nodeDiv.style.top = box_top+"px";
 			nodeDiv.style.width = box_width+"px";
 			nodeDiv.style.height = box_height+"px";
-			nodeDiv.setAttribute("id","div");
+			<!-- nodeDiv.setAttribute("id","div"+i);
+            nodeDiv.setAttribute("id","div0");
 		
 			<!--box_left = box1_left+box_width+10; -->
 			nodeBody.appendChild(nodeDiv);
-		}
+		<!--}
 		
 		<!--alert("box_left="+box1_left+ 
 		<!--	"; box_width="+box_width+
 		<!--	"; box_top="+box_top+
 		<!--	"; box_height="+box_height
 		<!--	);
-		{
-		<!--	do {
-			var x = Math.floor(Math.random()*420)+110;
-			var y = Math.floor(Math.random()*420)+160;
-		<!--	alert("x="+x+ "; y="+y);
-		<!--	}while( x > box_left+10 && x < box_width+box_left-70 &&
-		<!--			y > box_top+10 && y < box_height + box_top - 70);
-		}
 		
-		<!--alert("after While: x="+x+ "; y="+y);
-		var imgNode = document.getElementById("myImg");
-		<!--alert(imgNode.getAttribute(left));-->
-		imgNode.style.left = x+"px";
-		imgNode.style.top = y+"px";
+        node0Div = document.getElementById("div0");
+        
+        generateFaces();
+        cloneNode();         
+           
+            
+        nodeBody.addEventListener("click", lose_game);
+        
+            
+            
 	}
 </script>
+<div id = "title" style="position:absolute; left: 200px">
+<h2>Matching Game</h2>
+<p>Click on the extra image on the left</p>
+</div>
 <!--<div class = "container"></div> -->
-<img id = "myImg" src = "blackjack-logo.png">
+<!--<img id = "myImg" src = "https://www.dropbox.com/s/wgv3507e1hvityl/blackjack-logo.png?dl=1"> -->
 
 </body>
 
